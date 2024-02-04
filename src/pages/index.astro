@@ -4,70 +4,137 @@ import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
 import Counter from '../components/Counter.astro'
 import ContentMedia from '../components/ContentMedia.astro'
+import { Card } from 'accessible-astro-components'
+
+const response = await fetch('https://graphql.datocms.com/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: `query Homepage {
+          home {
+            title
+          }
+          allBlogPosts {
+            id
+            title
+            body
+            description
+            eventStartDate
+            image {
+              url
+            }
+          }
+        }
+      `,
+  }),
+})
+
+const json = await response.json()
+const data = json.data
+const title = data.home.title
+
+const { page } = Astro.props
 ---
 
-<DefaultLayout title="Home">
+<DefaultLayout title={title}>
   <Hero />
   <section class="my-64">
     <div class="container">
-      <h2 class="mb-16 text-6xl">Features</h2>
-      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        <Feature icon="mdi:tailwind" title="Tailwind CSS">
-          Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
-        </Feature>
-        <Feature icon="mdi:wheelchair-accessibility" title="a11y Components">
-          17 components and counting, all tried and tested for the most optimal accessible experience for your visitors.
-        </Feature>
-        <Feature icon="mdi:looks" title="Prettier">
-          Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
-        </Feature>
-        <Feature icon="mdi:eslint" title="ESLint">
-          Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
-        </Feature>
-        <Feature icon="mdi:book-open-page-variant" title="Blog">
-          This theme comes with a fully integrated blog, dynamic pages and SEO optimization.
-        </Feature>
-        <Feature icon="mdi:language-markdown" title="Markdown & MDX">
-          Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
-        </Feature>
-        <Feature icon="mdi:theme-light-dark" title="Dark mode">
-          Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
-        </Feature>
-        <Feature icon="mdi:cog" title="Design System">
-          The theme offers some very handy utilities to help you build your website faster.
-        </Feature>
-        <Feature icon="mdi:lighthouse" title="Lighthouse Scores">
-          Excellent lighthouse scores means your website will load faster and get better SEO rankings.
-        </Feature>
-      </div>
-    </div>
-  </section>
-  <ContentMedia imgSrc="/accessible-components.webp">
-    <h2>Accessible Components</h2>
-    <p class="text-2xl">
-      This theme provides plenty of tried and tested Accessible Astro Components. Some are native to this theme and a
-      lot of others are integrated using a <a href="https://github.com/markteekman/accessible-astro-components"
-        >separate package</a
-      >. They'll get you up and running in building an accessible solution for your visitors.
-    </p>
-  </ContentMedia>
-  <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
-    <h2>WCAG 2.1 AA Compliant</h2>
-    <p class="text-2xl">
-      Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible
-      navigation and components, clear outlines and tab indicators and the right color contrast, you're more certain of
-      reaching WCAG AA compliance.
-    </p>
-  </ContentMedia>
-  <section class="mb-32 mt-64">
-    <div class="container">
-      <h2 class="mb-16 text-6xl">Counters</h2>
-      <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
-        <Counter count="520" title="Stars" sub="On GitHub" />
-        <Counter count="17" title="Accessible" sub="Components" />
-        <Counter count="500" title="Commits" sub="Merged" />
-        <Counter count="18+" title="Months" sub="Since launch" />
-      </div>
+      <ContentMedia imgSrc="/cropped-vastljus-JPG.jpg">
+        <h2>Detta är Västljus</h2>
+        <p class="text-2xl">
+          VSB, bildat 1979, är ett öppet forum för belysningsentusiaster med över 140 medlemmar. Vi arrangerar
+          studiebesök, kurser och resor för att utforska den senaste belysningstekniken. Genom samarbete med andra
+          belysningssällskap och Ljuskultur arrangerar de Svenska Ljuspriset och deltar i Nordiska Ljuspriset.
+        </p>
+      </ContentMedia>
+      <h2 class="mb-16 text-6xl">Evenemang</h2>
+      <p>Missa inte våra kommande evenemang.</p>
+
+      <section class="my-12">
+        <div class="container">
+          <ul class="-mx-4 flex flex-wrap">
+            {
+              data.allBlogPosts.map((post) => (
+                <li class="mb-6 w-full px-4 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3">
+                  <Card
+                    url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
+                    title={post.title}
+                    footer={'Evenmanget startar:' + post.eventStartDate}
+                    img={post.image.url}
+                  >
+                    {post.description}
+                  </Card>
+                </li>
+              ))
+            }
+          </ul>
+          <ContentMedia imgSrc="/accessible-components.webp">
+            <h2>Ljusa Idéer</h2>
+            <p class="text-2xl">
+              Är det något objekt Du tycker att vi bör se? Eller är det något1245490015_s föreläsningsämne eller utbildning, som du tycker skulle vara intressant för oss i VSB?
+              Har du kanske andra bra idéer eller förslag på aktiviteter och annat som berör oss?
+              Eller har du kanske synpunkter eller saknar något på vår hemsida eller i vår verksamhet?
+              Kontakta oss genast! Vi välkomnar ris och ros, synpunkter och idéer!
+              info.vastsvenska@gmail.com
+            </p>
+          </ContentMedia>
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+            <Feature icon="mdi:tailwind" title="Tailwind CSS">
+              Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
+            </Feature>
+            <Feature icon="mdi:wheelchair-accessibility" title="a11y Components">
+              17 components and counting, all tried and tested for the most optimal accessible experience for your
+              visitors.
+            </Feature>
+            <Feature icon="mdi:looks" title="Prettier">
+              Less worry about formatting your code, let the Astro Prettier integration do the heavy lifting.
+            </Feature>
+            <Feature icon="mdi:eslint" title="ESLint">
+              Lint your code with strict a11y settings to ensure you stay on track with the WCAG standards.
+            </Feature>
+            <Feature icon="mdi:book-open-page-variant" title="Blog">
+              This theme comes with a fully integrated blog, dynamic pages and SEO optimization.
+            </Feature>
+            <Feature icon="mdi:language-markdown" title="Markdown & MDX">
+              Easily use .md and .mdx pages to build your websites or use it with Netlify CMS.
+            </Feature>
+            <Feature icon="mdi:theme-light-dark" title="Dark mode">
+              Fully integrated Dark mode gives your users the choice for their favorite viewing mode.
+            </Feature>
+            <Feature icon="mdi:cog" title="Design System">
+              The theme offers some very handy utilities to help you build your website faster.
+            </Feature>
+            <Feature icon="mdi:lighthouse" title="Lighthouse Scores">
+              Excellent lighthouse scores means your website will load faster and get better SEO rankings.
+            </Feature>
+          </div>
+        </div>
+      </section>
+
+      <ContentMedia imgSrc="/wcag-compliant.webp" reverseImg={true}>
+        <h2>WCAG 2.1 AA Compliant</h2>
+        <p class="text-2xl">
+          Using semantic HTML, landmarks, skip links, screen reader friendly content, aria-labels, keyboard accessible
+          navigation and components, clear outlines and tab indicators and the right color contrast, you're more certain
+          of reaching WCAG AA compliance.
+        </p>
+      </ContentMedia>
+      <section class="mb-32 mt-64">
+        <div class="container">
+          <h2 class="mb-16 text-6xl">Counters</h2>
+          <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-4">
+            <Counter count="520" title="Stars" sub="On GitHub" />
+            <Counter count="17" title="Accessible" sub="Components" />
+            <Counter count="500" title="Commits" sub="Merged" />
+            <Counter count="18+" title="Months" sub="Since launch" />
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 </DefaultLayout>
