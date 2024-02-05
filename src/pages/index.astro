@@ -34,7 +34,7 @@ const response = await fetch('https://graphql.datocms.com/', {
 })
 
 const json = await response.json()
-const data = json.data.home
+const data = json.data
 const title = data.home.title
 
 const { page } = Astro.props

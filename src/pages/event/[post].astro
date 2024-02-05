@@ -37,10 +37,12 @@ export async function getStaticPaths() {
   console.log(data)
 
   return data.map((post) => {
-    return {
-      params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
-      props: { post },
-    }
+    return [
+      {
+        params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
+        props: { post },
+      }
+    ]
   })
 
 }
