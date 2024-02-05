@@ -27,6 +27,7 @@ export async function getStaticPaths() {
 
   const json = await response.json();
   const data  = json.data.allBlogPosts;
+  console.log(data)
 
   // Check if there is data before mapping
   if (!data || data.length === 0) {
@@ -34,15 +35,11 @@ export async function getStaticPaths() {
     return { paths: [], fallback: true }; // or fallback: false depending on your use case
   }
 
-  console.log('Bajs' + data)
-
-  return data.flatMap((post) => {
-    return [
-      {
-        params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
-        props: { post },
-      }
-    ]
+  return data.map((post) => {
+    return {
+      params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
+      props: { post },
+    }
   })
 
 }
