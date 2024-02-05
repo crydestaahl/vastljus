@@ -28,6 +28,12 @@ export async function getStaticPaths() {
   const json = await response.json();
   const data  = json.data.allBlogPosts;
 
+  // Check if there is data before mapping
+  if (!data || data.length === 0) {
+    console.error("No data received from DatoCMS");
+    return { paths: [], fallback: true }; // or fallback: false depending on your use case
+  }
+
   console.log(data)
 
   return data.map((post) => {
