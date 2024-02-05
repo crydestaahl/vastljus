@@ -34,9 +34,9 @@ export async function getStaticPaths() {
     return { paths: [], fallback: true }; // or fallback: false depending on your use case
   }
 
-  console.log(data)
+  console.log('Bajs' + data)
 
-  return data.map((post) => {
+  return data.flatMap((post) => {
     return [
       {
         params: { post: post.title.replaceAll(' ', '-').toLowerCase() },
@@ -55,8 +55,8 @@ const { post } = Astro.props
   <div class="container">
     <div class="mt-12">
       <Breadcrumbs>
-        <BreadcrumbsItem href="/" label="Home" />
-        <BreadcrumbsItem href="/blog" label="Blog" />
+        <BreadcrumbsItem href="/" label="Hem" />
+        <BreadcrumbsItem href="/event" label="Evenemang" />
         <BreadcrumbsItem currentPage={true} label={post.title} />
       </Breadcrumbs>
     </div>

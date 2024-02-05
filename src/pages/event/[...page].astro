@@ -33,7 +33,6 @@ export async function getStaticPaths({ paginate }) {
 
   const json = await response.json();
   const data  = json.data.allBlogPosts;
-  console.log(data)
 
   return paginate(data, { pageSize: 6 });
 }
