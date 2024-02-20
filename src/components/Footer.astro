@@ -1,6 +1,7 @@
 ---
 import CallToAction from './CallToAction.astro'
-
+import { Icon } from 'astro-icon/components'
+import Navigation from '../components/Navigation.astro'
 const currentYear = new Date().getFullYear()
 ---
 
@@ -8,6 +9,11 @@ const currentYear = new Date().getFullYear()
   <CallToAction />
   <section class="py-8">
     <div class="container">
+      <li class="menu-item type-icon">
+        <a href="https://github.com/markteekman/accessible-astro-starter" title="Go to the Instagram page">
+          <Icon name="ion:logo-instagram" />
+        </a>
+      </li>
       <p>
         &copy; {currentYear} - Starter Theme for <a href="https://astro.build/">Astro</a>. Made with ❤️ by <a
           href="https://github.com/markteekman">Mark Teekman</a
@@ -16,3 +22,31 @@ const currentYear = new Date().getFullYear()
     </div>
   </section>
 </footer>
+
+<style lang="scss" is:global>
+  @use '../assets/scss/base/outline' as *;
+
+  header {
+    .type-icon a {
+      display: block;
+
+      [data-icon] {
+        height: auto;
+        margin-top: -4px;
+        width: 30px;
+
+        path {
+          fill: var(--action-color);
+        }
+      }
+
+      &:hover {
+        [data-icon] path {
+          fill: var(--action-color-state);
+        }
+      }
+    }
+  }
+</style>
+
+

@@ -1,0 +1,70 @@
+---
+import { Card } from 'accessible-astro-components'
+import { Icon } from 'astro-icon/components'
+
+const response = await fetch('https://graphql.datocms.com/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: `query Homepage {
+          home {
+            title
+          }
+          allBlogPosts {
+            id
+            title
+            body
+            description
+            eventStartDate
+            image {
+              url
+            }
+          }
+        }
+      `,
+  }),
+})
+
+const json = await response.json()
+const data = json.data
+const title = data.home.title
+
+---
+<div class="container">
+    <section class="my-12">
+        <h2 class="mb-5 text-5xl">Kommande evenemang</h2>
+        <p class="mb-7 ml-1">Missa inte våra evenemang.</p>
+        <div class="container">
+            <ul class="-mx-4 flex flex-wrap">
+                {
+                data.allBlogPosts.map((post) => (
+                    <li class="mb-6 w-full px-4 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3">
+                    <Card 
+                        url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
+                        title={post.title}
+                        footer={'Evenmanget startar:' + post.eventStartDate}
+                        img={post.image.url}
+                    >
+                        {post.description}
+                    </Card>
+                    </li>
+                ))
+                }
+            </ul>
+            <div class="flex justify-center">
+                <a class="button text-cemter bg-cyan-400" href="/event/">
+                  Se alla evenemang
+                </a>                
+            </div>
+    </section>
+</div>
+
+<style lang="scss">
+    .button {
+        width: 200px
+    }
+</style>

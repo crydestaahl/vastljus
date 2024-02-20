@@ -3,8 +3,8 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 import Hero from '../components/Hero.astro'
 import Feature from '../components/Feature.astro'
 import Counter from '../components/Counter.astro'
+import Events from '../components/Events.astro'
 import ContentMedia from '../components/ContentMedia.astro'
-import { Card } from 'accessible-astro-components'
 
 const response = await fetch('https://graphql.datocms.com/', {
   method: 'POST',
@@ -18,15 +18,13 @@ const response = await fetch('https://graphql.datocms.com/', {
           home {
             title
           }
-          allBlogPosts {
-            id
+          pitch1 {
             title
-            body
             description
-            eventStartDate
-            image {
-              url
-            }
+          }
+          pitch2 {
+            title
+            description
           }
         }
       `,
@@ -42,44 +40,23 @@ const { page } = Astro.props
 
 <DefaultLayout title={title}>
   <Hero />
+  <Events />
   <section class="my-64">
     <div class="container">
       <ContentMedia imgSrc="/Mölndals-innerstad.jpg">
-        <h2>Detta är Västljus</h2>
+        <h2>{data.pitch1.title}</h2>
         <p class="text-2xl">
-          VSB, bildat 1979, är ett öppet forum för belysningsentusiaster med över 140 medlemmar. Vi arrangerar
-          studiebesök, kurser och resor för att utforska den senaste belysningstekniken. Genom samarbete med andra
-          belysningssällskap och Ljuskultur arrangerar de Svenska Ljuspriset och deltar i Nordiska Ljuspriset.
+          {data.pitch1.description}
         </p>
+       
       </ContentMedia>
-      <h2 class="mb-16 text-6xl">Evenemang</h2>
-      <p>Missa inte våra kommande evenemang.</p>
 
       <section class="my-12">
         <div class="container">
-          <ul class="-mx-4 flex flex-wrap">
-            {
-              data.allBlogPosts.map((post) => (
-                <li class="mb-6 w-full px-4 sm:w-1/2 md:w-1/3 lg:w-1/3 xl:w-1/3">
-                  <Card
-                    url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
-                    title={post.title}
-                    footer={'Evenmanget startar:' + post.eventStartDate}
-                    img={post.image.url}
-                  >
-                    {post.description}
-                  </Card>
-                </li>
-              ))
-            }
-          </ul>
           <ContentMedia imgSrc="/3V0A4440.jpg">
-            <h2>Ljusa Idéer</h2>
+            <h2>{data.pitch2.title}</h2>
             <p class="text-2xl">
-              Är det något objekt Du tycker att vi bör se? Eller är det någotföreläsningsämne eller utbildning, som du tycker skulle vara intressant för oss i VSB?
-              Har du kanske andra bra idéer eller förslag på aktiviteter och annat som berör oss?
-              Eller har du kanske synpunkter eller saknar något på vår hemsida eller i vår verksamhet?
-              Kontakta oss genast! Vi välkomnar ris och ros, synpunkter och idéer!
+              {data.pitch2.description}
              
               <div class="flex flex-col gap-3 min-[500px]:flex-row">
                 <a class="button has-icon" href="https://github.com/markteekman/accessible-astro-starter">

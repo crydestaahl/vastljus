@@ -40,7 +40,6 @@ export async function getStaticPaths({ paginate }) {
 export const prerender = true;
 
 const { page } = Astro.props
-console.log(page)
 ---
 
 <DefaultLayout
@@ -68,7 +67,6 @@ console.log(page)
                 footer={'Evenmanget startar:' + post.eventStartDate}
                 img={post.image.url}
               >
-                {post.body}
               </Card>
             </li>
           ))
