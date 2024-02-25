@@ -6,17 +6,24 @@ const currentYear = new Date().getFullYear()
 ---
 
 <footer>
-  <CallToAction />
   <section class="py-8">
     <div class="container">
+      <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+        <h2 class="text-lg font-semibold mb-4">Follow Us</h2>
+        <div class="flex gap-4">
+          <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-facebook"></i> Facebook</a>
+          <a href="#" class="text-red-500 hover:text-red-700"><i class="fab fa-instagram"></i> Instagram</a>
+          <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
       <li class="menu-item type-icon">
         <a href="https://github.com/markteekman/accessible-astro-starter" title="Go to the Instagram page">
-          <Icon name="ion:logo-instagram" />
+        
         </a>
       </li>
       <p>
-        &copy; {currentYear} - Starter Theme for <a href="https://astro.build/">Astro</a>. Made with ❤️ by <a
-          href="https://github.com/markteekman">Mark Teekman</a
+        &copy; {currentYear} - <a href="https://astro.build/"></a>. Made with ❤️ by <a
+          href="https://github.com/markteekman">Christoffer Rydeståhl</a
         >.
       </p>
     </div>
@@ -25,6 +32,10 @@ const currentYear = new Date().getFullYear()
 
 <style lang="scss" is:global>
   @use '../assets/scss/base/outline' as *;
+
+  footer {
+    background-color: #414141;
+  }
 
   header {
     .type-icon a {

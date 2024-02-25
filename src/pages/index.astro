@@ -42,9 +42,9 @@ const { page } = Astro.props
 <DefaultLayout title={title}>
   <Hero />
   <Events />
-  <section class="mt-2">
+  <section class="mx-4">
     <div class="container">
-      <section class="mt-12">
+      <section class="mt-2">
         <div class="px-16 py-12 container-bg">
           <div class="container-content bg-white bg-opacity-80 px-16 bg-gray-100 py-8 border">
             <h2 class="text-center">{data.pitch1.title}</h2>
@@ -58,7 +58,7 @@ const { page } = Astro.props
           </div>
         </div>
       </section>
-      <section class="my-4">
+      <section class="my-16">
         <div class="container">
           <ContentMedia imgSrc="src/assets/img/ljuside.png">
             <h2>{data.pitch2.title}</h2>
