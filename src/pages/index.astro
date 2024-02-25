@@ -43,13 +43,22 @@ const { page } = Astro.props
   <Events />
   <section class="my-64">
     <div class="container">
-      <ContentMedia imgSrc="/Mölndals-innerstad.jpg">
-        <h2>{data.pitch1.title}</h2>
-        <p class="text-2xl">
-          {data.pitch1.description}
-        </p>
-       
-      </ContentMedia>
+      <section class="my-12">
+        <div class="px-16 py-12 container-bg">
+          <div class="container-content bg-white bg-opacity-80 px-16 bg-gray-100 py-8 border">
+            <h2 class="text-center">{data.pitch1.title}</h2>
+            <p class="text-center">
+              {data.pitch1.description}
+            </p>
+            <div class="flex justify-center btn">
+              <a class="button text-center" href="/event/">
+                Se alla evenemang
+              </a>                
+          </div>
+          </div>
+          </div>
+        </div>
+      </section>
 
       <section class="my-12">
         <div class="container">
@@ -65,7 +74,7 @@ const { page } = Astro.props
               </div>
             </p>
           </ContentMedia>
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+         <!--  <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
             <Feature icon="mdi:tailwind" title="Tailwind CSS">
               Use the power of Tailwind to greatly improve your productivity and enhance your developer workflow.
             </Feature>
@@ -94,7 +103,7 @@ const { page } = Astro.props
             <Feature icon="mdi:lighthouse" title="Lighthouse Scores">
               Excellent lighthouse scores means your website will load faster and get better SEO rankings.
             </Feature>
-          </div>
+          </div> -->
         </div>
       </section>
 
@@ -120,3 +129,14 @@ const { page } = Astro.props
     </div>
   </section>
 </DefaultLayout>
+
+<style lang="scss">
+  .container-bg {
+    background: url('../assets/img/bg-medium.png');
+
+    .container-content {
+
+    }
+
+  }
+</style>
