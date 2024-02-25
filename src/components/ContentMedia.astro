@@ -4,10 +4,10 @@ import { Media } from 'accessible-astro-components'
 const { imgSrc, reverseImg = false } = Astro.props
 ---
 
-<section class="my-64 bg-yellow-100 py-8 rounded-lg">
+<section class="my-6 py-4 px-12  content-media">
   <div class="container">
     <div class="grid grid-cols-1 gap-24 md:grid-cols-2">
-      {!reverseImg ? <Media class="rounded-lg" src={imgSrc} /> : ''}
+      {!reverseImg ? <Media class="" src={imgSrc} /> : ''}
       <div class="space-content flex flex-col justify-center">
         <slot />
       </div>
@@ -15,3 +15,10 @@ const { imgSrc, reverseImg = false } = Astro.props
     </div>
   </div>
 </section>
+
+
+<style lang="scss">
+  .content-media {
+    background-color: #FFEEE3;
+  }
+</style>

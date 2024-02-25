@@ -1,0 +1,32 @@
+---
+const { text, backgroundColor, textColor, hoverBg = false } = Astro.props
+---
+
+<div class="flex justify-center btn">
+    <a 
+        class="button text-center" 
+        href="/event/"
+        style=`background-color: ${backgroundColor}; border-color: ${backgroundColor}; color: ${textColor}`}
+        :hover=`background-color: ${hoverBg};`
+        >
+      {text}
+    </a>                
+</div>
+
+
+<style lang="scss">
+    .btn {
+      .button {
+          width: 295px; 
+          color: #fff;
+          border-radius: 13px; 
+          border-color: #4686FF;
+          background-color: #4686FF;
+          box-shadow: 0px 3px 6px #00000029;   
+        }
+  
+      .button:hover {
+        background-color: #4658ff;
+      }
+    }
+</style>
