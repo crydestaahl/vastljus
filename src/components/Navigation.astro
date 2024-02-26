@@ -1,14 +1,35 @@
 ---
 import ResponsiveToggle from './ResponsiveToggle.astro'
 import { DarkMode } from 'accessible-astro-components'
-const { logo = './src/assets/img/logo.jpg' } = Astro.props
 
+const response = await fetch('https://graphql.datocms.com/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: `query Logo {
+          logo {
+            logo {
+              url
+            }
+          }
+        }
+      `,
+  }),
+})
+
+const json = await response.json()
+const data = json.data
+const logo = data.logo.logo.url
 ---
 
 <div id="main-navigation" class="is-desktop py-6">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
-      <img class="h-8 mr-2" src='./src/assets/img/logo.jpg' alt="" decoding="async" />
+      <img class="h-8 mr-2" src={logo} alt="" decoding="async" />
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
