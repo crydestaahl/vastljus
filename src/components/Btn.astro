@@ -33,4 +33,11 @@ const { text, backgroundColor, textColor, hoverBg = false } = Astro.props
         background-color: #4658ff;
       }
     }
+
+    @media screen and (max-width: 768px) {
+  /* Dina mobilspecifika CSS-regler här */
+    .button {
+      width: 253px; 
+    }
+  }
 </style>
