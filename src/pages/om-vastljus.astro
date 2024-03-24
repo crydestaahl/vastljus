@@ -1,0 +1,50 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import BtnSecondary from '../components/BtnSecondary.astro'
+import { Icon } from 'astro-icon/components'
+import {
+  Accordion,
+  AccordionItem,
+  Breadcrumbs,
+  BreadcrumbsItem,
+  Card,
+  Media,
+  Modal,
+  Notification,
+  Pagination,
+} from 'accessible-astro-components'
+---
+
+<DefaultLayout title="Accessible Components">
+  <section class="my-12">
+    <div class="space-content container"></div>
+  </section>
+  <section class="mt-2">
+    <div class="container-bg px-16 py-12">
+      <div class="container-content border bg-gray-100 bg-white bg-opacity-80 px-16 py-8">
+        <h2 class="text-center">Om Västljus</h2>
+        <p class="text-center">
+          VSB, bildat 1979, är ett öppet forum för belysningsentusiaster med över 140 medlemmar. Vi arrangerar
+          studiebesök, kurser och resor för att utforska den senaste belysningstekniken. Genom samarbete med andra
+          belysningssällskap och Ljuskultur arrangerar de Svenska Ljuspriset och deltar i Nordiska Ljuspriset.
+        </p>
+
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style>
+  .container-bg {
+    margin-top: 9rem;
+  }
+
+
+  @media screen and (max-width: 768px) {
+  /* Dina mobilspecifika CSS-regler här */
+    .container-bg {
+      margin-top: 0;
+      padding: 1rem;
+    }
+  }
+</style>
