@@ -25,10 +25,10 @@ const data = json.data
 const logo = data.logo.logo.url
 ---
 
-<div id="main-navigation" class="is-desktop py-6">
+<div id="main-navigation" class="is-desktop py-6 bg-white">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
-      <img class="h-8 mr-2" src={logo} alt="" decoding="async" />
+      <img class="mr-2 h-8" src={logo} alt="" decoding="async" />
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
@@ -240,7 +240,6 @@ const logo = data.logo.logo.url
 
   #main-navigation {
     a {
-
       color: var(--font-color);
     }
 
@@ -251,18 +250,17 @@ const logo = data.logo.logo.url
     }
 
     &.is-desktop {
-      background-color: #fff;    
+      background-color: #fff;
       position: fixed;
       z-index: 1;
       width: 100%;
-      box-shadow: 2px 2px 12px -2px rgba(0,0,0,0.75);
-      -webkit-box-shadow: 2px 2px 12px -2px rgba(0,0,0,0.75);
-      -moz-box-shadow: 2px 2px 12px -2px rgba(0,0,0,0.75);
+      box-shadow: 2px 2px 12px -2px rgba(0, 0, 0, 0.75);
+      -webkit-box-shadow: 2px 2px 12px -2px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 2px 2px 12px -2px rgba(0, 0, 0, 0.75);
 
       .desktop-menu {
         visibility: visible;
         position: static;
-        
       }
 
       .mobile-menu {
@@ -292,7 +290,7 @@ const logo = data.logo.logo.url
           z-index: 1;
           position: absolute;
           margin-left: -1rem;
-          margin-top: 5rem;
+          margin-top: 3rem;
         }
       }
 
@@ -301,6 +299,7 @@ const logo = data.logo.logo.url
         z-index: -99;
         position: absolute;
         left: 0;
+        background: #fff;
       }
 
       .responsive-toggle {
