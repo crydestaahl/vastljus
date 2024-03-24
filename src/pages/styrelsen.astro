@@ -1,0 +1,38 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets'
+---
+
+<DefaultLayout title="Accessible Components">
+  <section class="my-12">
+    <div class="space-content container"></div>
+  </section>
+  <section class="mt-2">
+    <div class="container-bg">
+      <div class="container-content flex flex-col items-center border bg-gray-100 bg-white bg-opacity-80">
+        <Image src="/johan.png" alt="A bird." width="314" height="314" class="" />
+        <h2 class="text-center">Johan Andersson</h2>
+        <p class="text-center">Board member.</p>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<style>
+  .container-bg {
+    margin-top: 9rem;
+    margin: 9rem auto;
+    max-width: 375px;
+    max-height: 433px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Dina mobilspecifika CSS-regler här */
+    .container-bg {
+      margin-top: 0;
+      padding: 1rem;
+    }
+  }
+</style>

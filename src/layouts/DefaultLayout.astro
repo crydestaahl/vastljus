@@ -6,11 +6,10 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 
 const {
-  title = 'Astro',
-  description = 'A starter project with accessibility features using Astro static site builder. Contains accessible landmarks, skip links, a dark mode color scheme, better focus outline and keyboard menu navigation.',
-  url,
+  title = 'Västljus',
+  description = 'VSB, bildat 1979, är ett öppet forum för belysningsentusiaster med över 140 medlemmar. Vi arrangerar studiebesök, kurser och resor för att utforska den senaste belysningstekniken. Genom samarbete med andra belysningssällskap och Ljuskultur arrangerar de Svenska Ljuspriset och deltar i Nordiska Ljuspriset.',
   image = '/social-preview-image.png',
-  author = 'Mark Teekman',
+  author = 'Västljus',
 } = Astro.props
 ---
 
@@ -41,7 +40,7 @@ const {
     <Footer />
     <style lang="scss" is:global>
       // theme settings
-      @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap'); 
+      @import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
       :root {
         --radius-small: 3px;
         --radius-large: 6px;
@@ -73,11 +72,12 @@ const {
       body {
         height: 100%;
         overflow-x: hidden;
-        font-family: "Mulish", sans-serif;
+        font-family: 'Mulish', sans-serif;
         font-optical-sizing: auto;
         font-style: normal;
+        margin: 0;
+        padding: 0;
       }
-
 
       body {
         display: flex;
@@ -86,10 +86,9 @@ const {
         background-color: var(--background);
         background-image: url('../assets/img/bg-medium.png');
         background-size: auto; /* Adjust as needed */
-        background-position: center; /* Adjust as needed */
-        background-attachment: fixed;
+        background-position: top 50px; /* Adjust as needed */
+        background-attachment: scroll;
         background-repeat: no-repeat;
-
 
         main {
           flex: 1 0 auto;

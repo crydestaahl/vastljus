@@ -1,18 +1,5 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import BtnSecondary from '../components/BtnSecondary.astro'
-import { Icon } from 'astro-icon/components'
-import {
-  Accordion,
-  AccordionItem,
-  Breadcrumbs,
-  BreadcrumbsItem,
-  Card,
-  Media,
-  Modal,
-  Notification,
-  Pagination,
-} from 'accessible-astro-components'
 ---
 
 <DefaultLayout title="Accessible Components">
@@ -28,7 +15,6 @@ import {
           studiebesök, kurser och resor för att utforska den senaste belysningstekniken. Genom samarbete med andra
           belysningssällskap och Ljuskultur arrangerar de Svenska Ljuspriset och deltar i Nordiska Ljuspriset.
         </p>
-
       </div>
     </div>
   </section>
@@ -39,9 +25,8 @@ import {
     margin-top: 9rem;
   }
 
-
   @media screen and (max-width: 768px) {
-  /* Dina mobilspecifika CSS-regler här */
+    /* Dina mobilspecifika CSS-regler här */
     .container-bg {
       margin-top: 0;
       padding: 1rem;
