@@ -25,7 +25,7 @@ const data = json.data
 const logo = data.logo.logo.url
 ---
 
-<div id="main-navigation" class="is-desktop py-6 bg-white">
+<div id="main-navigation" class="is-desktop bg-white py-6">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
       <img class="mr-2 h-8" src={logo} alt="" decoding="async" />
@@ -231,6 +231,10 @@ const logo = data.logo.logo.url
         closeAllDropdownMenus()
       }
     })
+    // Add an event listener to the popstate event
+    window.addEventListener('popstate', checkMenuSize)
+    // Add an event listener to the hashchange event
+    window.addEventListener('hashchange', checkMenuSize)
   })
 </script>
 
