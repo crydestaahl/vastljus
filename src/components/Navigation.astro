@@ -47,7 +47,7 @@ const logo = data.logo.logo.url
 </div>
 
 <script>
-  document.addEventListener('astro:page-load', () => {
+  document.addEventListener('popstate', () => {
     // variables
     const mainNav = document.querySelector('#main-navigation')
     const mainMenu = mainNav.querySelector('ul')
@@ -456,5 +456,13 @@ const logo = data.logo.logo.url
         box-shadow: none;
       }
     }
+  }
+
+  @media only screen and (max-width: 768px) { 
+    #main-navigation {
+      .responsive-toggle {
+        display: block;
+      }
+      }
   }
 </style>

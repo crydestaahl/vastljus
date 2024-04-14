@@ -1,11 +1,11 @@
 ---
-const { text  = false } = Astro.props
+const { text, link  = false } = Astro.props
 ---
 
 <div class="flex justify-center btn">
     <a 
         class="button text-center" 
-        href="/event/"
+        href={link}
         >
       {text}
     </a>                
