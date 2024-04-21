@@ -25,10 +25,10 @@ const data = json.data
 const logo = data.logo.logo.url
 ---
 
-<div id="main-navigation" class="is-desktop bg-white py-6">
+<div id="main-navigation" class="is-desktop py-8">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
-      <img class="mr-2 h-8" src={logo} alt="" decoding="async" />
+      <img src={logo} alt="Your Logo" width="97" height="87" />
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
@@ -47,7 +47,7 @@ const logo = data.logo.logo.url
 </div>
 
 <script>
-  document.addEventListener('popstate', () => {
+  document.addEventListener('astro:page-load', () => {
     // variables
     const mainNav = document.querySelector('#main-navigation')
     const mainMenu = mainNav.querySelector('ul')
@@ -231,10 +231,6 @@ const logo = data.logo.logo.url
         closeAllDropdownMenus()
       }
     })
-    // Add an event listener to the popstate event
-    window.addEventListener('popstate', checkMenuSize)
-    // Add an event listener to the hashchange event
-    window.addEventListener('hashchange', checkMenuSize)
   })
 </script>
 
@@ -243,10 +239,7 @@ const logo = data.logo.logo.url
   @use '../assets/scss/base/outline' as *;
 
   #main-navigation {
-    a {
-      color: var(--font-color);
-    }
-
+    background: #fff;
     > .container {
       display: flex;
       justify-content: space-between;
@@ -254,14 +247,6 @@ const logo = data.logo.logo.url
     }
 
     &.is-desktop {
-      background-color: #fff;
-      position: fixed;
-      z-index: 1;
-      width: 100%;
-      box-shadow: 2px 2px 12px -2px rgba(0, 0, 0, 0.75);
-      -webkit-box-shadow: 2px 2px 12px -2px rgba(0, 0, 0, 0.75);
-      -moz-box-shadow: 2px 2px 12px -2px rgba(0, 0, 0, 0.75);
-
       .desktop-menu {
         visibility: visible;
         position: static;
@@ -279,22 +264,11 @@ const logo = data.logo.logo.url
     &.is-mobile {
       flex-direction: column;
 
-      a {
-        font-size: 23px;
-      }
-
       .mobile-menu {
         display: none;
 
         &.show {
           display: block;
-          background: #fff;
-          width: 100vw;
-          height: 100vh;
-          z-index: 1;
-          position: absolute;
-          margin-left: -1rem;
-          margin-top: 3rem;
         }
       }
 
@@ -303,7 +277,6 @@ const logo = data.logo.logo.url
         z-index: -99;
         position: absolute;
         left: 0;
-        background: #fff;
       }
 
       .responsive-toggle {
@@ -328,7 +301,6 @@ const logo = data.logo.logo.url
           text-decoration: none;
           font-size: 1.125rem;
           line-height: 1.6875rem;
-          color: var(--font-color);
         }
 
         a:hover,
@@ -336,7 +308,8 @@ const logo = data.logo.logo.url
         .is-active,
         .has-dropdown > button:hover,
         .has-dropdown > button:focus {
-          color: var(--action-color-state);
+          text-decoration-thickness: 1px;
+          text-underline-offset: 7px;
         }
 
         .is-active {
@@ -351,8 +324,6 @@ const logo = data.logo.logo.url
 
       > ul {
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
 
         ul {
           position: relative;
@@ -378,6 +349,7 @@ const logo = data.logo.logo.url
         padding: 0;
         margin-top: -1px;
         border: none;
+        color: var(--action-color);
 
         &:hover {
           color: var(--action-color-state);
@@ -456,13 +428,5 @@ const logo = data.logo.logo.url
         box-shadow: none;
       }
     }
-  }
-
-  @media only screen and (max-width: 768px) { 
-    #main-navigation {
-      .responsive-toggle {
-        display: block;
-      }
-      }
   }
 </style>
