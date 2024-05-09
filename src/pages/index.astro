@@ -41,24 +41,24 @@ const { page } = Astro.props
 <DefaultLayout title={title}>
   <Hero />
   <Events />
-  <section class="mx-4">
+  <section class="">
     <div class="container">
       <section class="mt-2">
-        <div class="px-16 py-12  container-bg">
-          <div class="container-content bg-white bg-opacity-80 px-16 bg-gray-100 py-8 border">
+        <div class="px-10 py-12  container-bg w-full">
+          <div class="container-content bg-white bg-opacity-90 px-16 bg-gray-100 py-8 border">
             <h2 class="text-center">{data.pitch1.title}</h2>
             <p class="text-center">
               {data.pitch1.description}
             </p>
-            <div class="flex justify-center btn py-2 mt-6">
+            <div class="flex justify-center btn py-2 mt-4">
               <BtnSecondary text="Läs mer" link="om-vastljus"/>
             </div>
           </div>
           </div>
         </div>
       </section>
-      <section class="my-16">
-        <div class="container">
+      <section>
+        <div class="container py-12 w-full">
           <ContentMedia imgSrc="src/assets/img/ljuside.png">
             <h2>{data.pitch2.title}</h2>
             <p class="text">
@@ -126,6 +126,10 @@ const { page } = Astro.props
 </DefaultLayout>
 
 <style lang="scss">
+  .container {
+    margin-top: 4rem;
+    margin-bottom: 8rem;
+  }
   .container-bg {
     background: url('../assets/img/bg-medium.png');
     box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.75);

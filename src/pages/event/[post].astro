@@ -2,7 +2,6 @@
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Breadcrumbs, BreadcrumbsItem, Media } from 'accessible-astro-components'
 
-
 export async function getStaticPaths() {
   const response = await fetch('https://graphql.datocms.com/', {
     method: 'POST',
@@ -24,17 +23,16 @@ export async function getStaticPaths() {
         }
       }`,
     }),
-  });
+  })
 
-
-  const json = await response.json();
-  const data  = json.data.allBlogPosts;
+  const json = await response.json()
+  const data = json.data.allBlogPosts
   console.log(data)
 
   // Check if there is data before mapping
   if (!data || data.length === 0) {
-    console.error("No data received from DatoCMS");
-    return { paths: [], fallback: true }; // or fallback: false depending on your use case
+    console.error('No data received from DatoCMS')
+    return { paths: [], fallback: true } // or fallback: false depending on your use case
   }
 
   return data.map((post) => {
@@ -43,40 +41,36 @@ export async function getStaticPaths() {
       props: { post },
     }
   })
-
 }
 
-export const prerender = true;
+export const prerender = true
 
 const { post } = Astro.props
-
 ---
 
 <DefaultLayout title={post.title} description={post.body} url={post.title}>
-  <div class="container">
-    <div class="mt-12">
+  <div class="container bg-white bg-opacity-90">
+    <div class="mt-12 pt-4">
       <Breadcrumbs>
         <BreadcrumbsItem href="/" label="Hem" />
         <BreadcrumbsItem href="/event" label="Evenemang" />
         <BreadcrumbsItem currentPage={true} label={post.title} />
       </Breadcrumbs>
     </div>
-  </div>
+  
   <section class="my-12">
+    <div class="container">
+      <Media class="w-full" src={post.image.url} />
+    </div>
+  </section>
+  <section class="my-12 ">
     <div class="container">
       <h1>{post.title}</h1><br />
       <p>Evenemanget startar: {post.eventStartDate}</p>
+      <p class="text-2xl pb-8">{post.body}</p>
     </div>
   </section>
-  <section class="my-12">
-    <div class="container">
-      <p class="text-2xl">{post.body}</p>
-      <Media
-        class="rounded-lg"
-        src={post.image.url}
-      />
-    </div>
-  </section>
+</div>
 </DefaultLayout>
 
 <style lang="scss">
