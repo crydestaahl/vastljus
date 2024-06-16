@@ -1,33 +1,39 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+
+const response = await fetch('https://graphql.datocms.com/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+    Authorization: `Bearer ${import.meta.env.DATOCMS_API_KEY}`,
+  },
+  body: JSON.stringify({
+    query: `query BliMedlemPage {
+          bliMedlem {
+            title
+            body(markdown: true)
+          }
+        }
+      `,
+  }),
+})
+
+const json = await response.json()
+const data = json.data.bliMedlem
+const title = data.title
+const body = data.body
 ---
 
-<DefaultLayout title="Accessible Components">
+<DefaultLayout title="Bli medlem">
   <section>
     <div class="space-content container"></div>
   </section>
   <section>
     <div class="container-bg px-16 py-12">
       <div class="container-content border bg-gray-100 bg-white bg-opacity-90 px-8 py-8">
-        <h2 class="text-center mb-4">Bli medlem</h2>
-        <p class="">
-          Västsvenska Belysningssällskapet (VSB) är en ideell förening som verkar för god ljuskultur. Våra medlemmar arbetar som bl.a. arkitekter, elkonsulter, ljusdesigners och representanter från belysningsföretagen. Föreningen anordnar studiebesök till intressanta platser och byggnader, samt anordnar föreläsningar som berör ljus och belysning. VSB fungerar också som ett forum för kunskapsutbyte och erfarenhetsåterföring för oss som är verkar inom belysningssektorn. Tillsammans är vi också med och påverkar belysningsbranschens utveckling. Till ditt personliga medlemskap i VSB ingår tillträde till våra aktiviteter och arrangemang, dessutom ingår en prenumeration på tidningen Ljuskultur, som är belysningsbranschens tidskrift. Tidningen skickas till dig sex gånger/år. Medlemsavgiften faktureras av Ljuskultur tillsammans med prenumerationskostnaden. Som medlem i VSB är kostnaden för tidningen rabatterad jämfört med en ordinarie prenumeration. Det finns tre typer av medlemskap i VSB:
-          <br>
-          <br>
-          Ordinarie medlem à 600kr/år
-          Pensionär/Studerande à 400kr/år
-          Hedersmedlemmar betalar enbart för tidningen 300kr/år
-          Västsvenska Belysningssällskapet är en förening för dig som vill lära dig mer om ljus och teknik, samt ett utmärkt tillfälle dig att skapa nya kontakter inom branschen.
-          
-          Vid uppsägning av medlemskap eller problem med utebliven tidning var vänlig kontakta ljuskultur. info@ljuskultur.se
-          
-          För att bli medlem skicka in uppgifter enligt nedan till info.vastsvenska@gmail.com, märk mailet med Ny medlem.
-          
-          Namn, företag, adress, telefon, epost.
-          
-          Om faktura adressen är annan än medlems adressen, skriv det i mailet.
-        </p>
-      </div>
+        <h2 class="text-center mb-4">{title}</h2>
+        <div set:html={body} />
     </div>
   </section>
 </DefaultLayout>

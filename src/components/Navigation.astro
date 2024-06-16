@@ -10,19 +10,19 @@ const response = await fetch('https://graphql.datocms.com/', {
   },
   body: JSON.stringify({
     query: `query Logo {
-          logo {
-            logo {
-              url
+            home {
+              logo {
+                url
+              }
             }
           }
-        }
       `,
   }),
 })
 
 const json = await response.json()
 const data = json.data
-const logo = data.logo.logo.url
+const logo = data.home.logo.url
 ---
 
 <div id="main-navigation" class="is-desktop py-8">
