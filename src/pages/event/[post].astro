@@ -15,7 +15,7 @@ export async function getStaticPaths() {
         allBlogPosts {
           id
           title
-          body
+          body(markdown: true)
           eventStartDate
           image {
             url
@@ -68,7 +68,7 @@ const { post } = Astro.props
       <div class="container">
         <h2>{post.title}</h1><br />
         <p>Evenemanget startar: {post.eventStartDate}</p><br />
-        <p class="text-1xl pb-8">{post.body}</p>
+        <div set:html={post.body} />
       </div>
     </section>
   </div>
@@ -78,6 +78,7 @@ const { post } = Astro.props
 <style lang="scss">
   .container {
     margin: 1rem auto;
+    padding-bottom: 1rem;
   }
   ul {
     display: grid;

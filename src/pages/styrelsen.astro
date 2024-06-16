@@ -41,7 +41,7 @@ const { page } = Astro.props
       {
         data.map((post) => (
           <div class="container-content flex flex-col items-center border bg-gray-100 bg-white bg-opacity-80">
-            <Image src={post.img.url} alt="A bird." width="314" height="314" class="" />
+            <img src={post.img.url} alt={post.name} width="314" height="314" />
             <h2 class="text-center">{post.name}</h2>
             <p class="text-center">{post.description}</p>
           </div>
