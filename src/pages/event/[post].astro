@@ -27,7 +27,6 @@ export async function getStaticPaths() {
 
   const json = await response.json()
   const data = json.data.allBlogPosts
-  console.log(data)
 
   // Check if there is data before mapping
   if (!data || data.length === 0) {
@@ -74,7 +73,7 @@ const { post } = Astro.props
   </div>
 </div>
 </DefaultLayout>
-
+s
 <style lang="scss">
   .container {
     margin: 1rem auto;
