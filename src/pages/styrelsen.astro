@@ -25,7 +25,6 @@ const response = await fetch('https://graphql.datocms.com/', {
 
 const json = await response.json()
 const data = json.data.allStyrelsens
-console.log(data)
 
 export const prerender = true;
 
@@ -40,7 +39,7 @@ const { page } = Astro.props
     <div class="container-styrelsen">
       {
         data.map((post) => (
-          <div class="container-content flex flex-col items-center border bg-gray-100 bg-white bg-opacity-80">
+          <div class="container-content container-item flex flex-col items-center border bg-gray-100 bg-white bg-opacity-80">
             <img src={post.img.url} alt={post.name} width="314" height="314" />
             <h2 class="text-center">{post.name}</h2>
             <p class="text-center">{post.description}</p>
@@ -53,12 +52,19 @@ const { page } = Astro.props
 
 <style>
   .container-styrelsen {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem;
+    height: auto;
     margin-top: 4rem;
     margin: 9rem auto;
-    max-width: 375px;
-    max-height: 433px;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    justify-content: center;
+  }
+
+  .container-item {
+    margin: 2rem;
   }
 
   @media screen and (max-width: 768px) {
