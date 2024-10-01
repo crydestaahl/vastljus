@@ -50,17 +50,20 @@ const { page } = Astro.props
   <Events />
   <section class="">
     <div class="container">
-      <section class="mt-2">
-        <div class="container-bg w-full px-10 py-12">
-          <div class="container-content border bg-gray-100 bg-white bg-opacity-90 px-16 py-8">
-            <h2 class="text-center">{pitch1Title}</h2>
-            <p class="text-center">
-              {pitch1Body}
-            </p>
-            <div class="btn mt-4 flex justify-center py-2">
-              <BtnSecondary text="Läs mer" link="om-vastljus" />
-            </div>
+      <div class="container w-full py-12">
+        <div class="container-content border bg-gray-100 bg-white bg-opacity-90 px-16 py-8">
+          <h2 class="text-center">{pitch1Title}</h2>
+          <p class="text-center">
+            {pitch1Body}
+          </p>
+          <div class="btn mt-4 flex justify-center py-2">
+            <BtnSecondary text="Läs mer" link="om-vastljus" />
           </div>
+        </div>
+        </div>
+      <section class="mt-2">
+        <div class="w-full px-10 py-6">
+         
         </div>
       </section>
     </div>
@@ -140,6 +143,7 @@ const { page } = Astro.props
     box-shadow: 1px 8px 24px 0px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 1px 8px 24px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 1px 8px 24px 0px rgba(0, 0, 0, 0.75);
+    background-size: 100vw;
   }
 
   .card {
@@ -150,7 +154,7 @@ const { page } = Astro.props
     /* Dina mobilspecifika CSS-regler här */
     .container-bg {
       padding: 1rem;
-      background-size: cover;
+      background-size: 100vw;
 
       .container-content {
         padding-left: 1rem;
