@@ -37,9 +37,31 @@ export async function getStaticPaths({ paginate }) {
   return paginate(data, { pageSize: 6 });
 }
 
+
+function formatTime(isoTid) {
+  // Konvertera ISO-tid till ett Date-objekt
+  const datum = new Date(isoTid);
+
+  // Skapa en options-objekt för att anpassa formateringen
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false, // Använd 24-timmarsformat
+  };
+
+  // Använd Intl.DateTimeFormat för att formatera enligt önskemål
+  const formateradTid = datum.toLocaleString('sv-SE', options);
+
+  return formateradTid;
+}
+
 export const prerender = true;
 
 const { page } = Astro.props
+
 ---
 
 <DefaultLayout
@@ -57,7 +79,7 @@ const { page } = Astro.props
               <Card
                 url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
                 title={post.title}
-                footer={'Evenmanget startar:' + post.eventStartDate}
+                footer={'Evenmanget startar:' + formatTime(post.eventStartDate)}
                 img={post.image.url}
               >
               </Card>
