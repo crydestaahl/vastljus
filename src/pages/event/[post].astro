@@ -42,6 +42,26 @@ export async function getStaticPaths() {
   })
 }
 
+function formatTime(isoTid) {
+  // Konvertera ISO-tid till ett Date-objekt
+  const datum = new Date(isoTid);
+
+  // Skapa en options-objekt för att anpassa formateringen
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false, // Använd 24-timmarsformat
+  };
+
+  // Använd Intl.DateTimeFormat för att formatera enligt önskemål
+  const formateradTid = datum.toLocaleString('sv-SE', options);
+
+  return formateradTid;
+}
+
 export const prerender = true
 
 const { post } = Astro.props
@@ -66,7 +86,7 @@ const { post } = Astro.props
     <section class="my-12 ">
       <div class="container">
         <h2>{post.title}</h1><br />
-        <p>Evenemanget startar: {post.eventStartDate}</p><br />
+        <p>Evenemanget startar: {formatTime(post.eventStartDate)}</p><br />
         <div set:html={post.body} />
       </div>
     </section>
@@ -75,10 +95,12 @@ const { post } = Astro.props
 </DefaultLayout>
 s
 <style lang="scss">
+
   .container {
     margin: 1rem auto;
     padding-bottom: 1rem;
   }
+
   ul {
     display: grid;
     grid-template-columns: 1fr;
