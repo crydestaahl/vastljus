@@ -30,6 +30,26 @@ const response = await fetch('https://graphql.datocms.com/', {
   }),
 })
 
+function formatTime(isoTid) {
+  // Konvertera ISO-tid till ett Date-objekt
+  const datum = new Date(isoTid);
+
+  // Skapa en options-objekt för att anpassa formateringen
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false, // Använd 24-timmarsformat
+  };
+
+  // Använd Intl.DateTimeFormat för att formatera enligt önskemål
+  const formateradTid = datum.toLocaleString('sv-SE', options);
+
+  return formateradTid;
+}
+
 const json = await response.json()
 const data = json.data
 const title = data.home.title
@@ -47,7 +67,7 @@ const title = data.home.title
               <Card
                 url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
                 title={post.title}
-                footer={'Evenmanget startar:' + post.eventStartDate}
+                footer={'Evenmanget startar:' + formatTime(post.eventStartDate)}
                 img={post.image.url}
               >
                 {post.description}
