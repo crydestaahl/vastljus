@@ -74,7 +74,7 @@ const { page } = Astro.props
           <p class="text">
          {pitch2Body}
             <div class="flex flex-col gap-3 min-[500px]:flex-row">
-              <Btn text="Läs mer" />
+              <BtnSecondary text="Läs mer" link="event" />
             </div>
           </p>
         </ContentMedia>
@@ -134,16 +134,19 @@ const { page } = Astro.props
 </DefaultLayout>
 
 <style lang="scss">
+  body {
+    background: url('../assets/img/bg-medium.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
   .container {
     margin-top: 4rem;
     margin-bottom: 8rem;
   }
   .container-bg {
-    background: url('../assets/img/bg-medium.png');
     box-shadow: 1px 8px 24px 0px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 1px 8px 24px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 1px 8px 24px 0px rgba(0, 0, 0, 0.75);
-    background-size: 100vw;
   }
 
   .card {

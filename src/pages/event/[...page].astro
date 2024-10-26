@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
-import { Pagination } from 'accessible-astro-components'
+import Pagination from '../../components/Pagination.astro'
 import Card from '../../components/Card.astro'
 
 export async function getStaticPaths({ paginate }) {
@@ -70,7 +70,7 @@ const { page } = Astro.props
   description="Kommande evenemang."
 >
 
-  <section class="my-12 container-background lg:p-8 ">
+  <section class="my-12 container-background lg:p-8 bg-gray-100 bg-white bg-opacity-90">
     <div class="container">
       <h1>Kommande aktiviteter</h1>
       <ul class="my-3">
@@ -110,7 +110,6 @@ const { page } = Astro.props
   }
 
   .container-background {
-    background: #FFEEE3;
     width: 90vw;
     margin: 4rem auto;
     box-shadow: 1px 8px 24px 0px rgba(0,0,0,0.75);
