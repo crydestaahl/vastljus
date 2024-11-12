@@ -23,8 +23,10 @@ const response = await fetch('https://graphql.datocms.com/', {
             description
             eventStartDate
             image {
-              responsiveImage {
-                webpSrcSet
+              responsiveImage(imgixParams: {fm: webp, w: "600", h: "600"}, sizes: "(max-width: 350px)") {
+                src
+                width
+                height
               }
             }
           }
@@ -70,8 +72,8 @@ const title = data.home.title
               <Card
                 url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
                 title={post.title}
-                footer={'Evenmanget startar:' + formatTime(post.eventStartDate)}
-                img={post.image.responsiveImage.webpSrcSet}
+                footer={'Evenmanget startar: ' + formatTime(post.eventStartDate)}
+                img={post.image.responsiveImage.src}
               >
                 {post.description}
               </Card>
