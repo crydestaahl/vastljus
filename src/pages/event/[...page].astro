@@ -21,7 +21,9 @@ export async function getStaticPaths({ paginate }) {
                   description
                   eventStartDate
                   image {
-                    url
+                    responsiveImage {
+                      webpSrcSet
+                    }
                   }
                 }
                 _allBlogPostsMeta {
@@ -81,7 +83,7 @@ const { page } = Astro.props
                 url={'/event/' + post.title?.replaceAll(' ', '-').toLowerCase()}
                 title={post.title}
                 footer={'Evenmanget startar:' + formatTime(post.eventStartDate)}
-                img={post.image.url}
+                img={post.image.responsiveImage.webpSrcSet}
               >
               </Card>
             </li>

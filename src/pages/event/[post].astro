@@ -18,7 +18,9 @@ export async function getStaticPaths() {
           body(markdown: true)
           eventStartDate
           image {
-            url
+            responsiveImage {
+              webpSrcSet
+            }
           }
         }
       }`,
@@ -80,7 +82,7 @@ const { post } = Astro.props
     
     <section class="my-12">
       <div class="container">
-        <Media class="w-full" src={post.image.url} />
+        <Media class="w-full" src={post.image.responsiveImage.webpSrcSet} />
       </div>
     </section>
     <section class="my-12 ">
