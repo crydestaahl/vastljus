@@ -15,7 +15,7 @@ const response = await fetch('https://graphql.datocms.com/', {
             name
             img {
               responsiveImage {
-                webpSrcSet
+                src
               }
             }
             description      
@@ -42,7 +42,7 @@ const { page } = Astro.props
       {
         data.map((post) => (
           <div class="container-content container-item flex flex-col items-center border bg-gray-100 bg-white bg-opacity-80">
-            <img src={post.img.responsiveImage.webpSrcSet} alt={post.name} width="314" height="314" />
+            <img src={post.img.responsiveImage.src} alt={post.name} width="314" height="314" />
             <h2 class="text-center">{post.name}</h2>
             <p class="text-center">{post.description}</p>
           </div>
